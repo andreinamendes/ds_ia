@@ -2,7 +2,7 @@ class Mapa:
   def __init__(self):
     self.__mapa = {
       'Arad': {
-        'Zernd': 75,
+        'Zerind': 75,
         'Sibiu': 140,
         'Timisoara': 118
       },
@@ -14,13 +14,15 @@ class Mapa:
         'Zerind': 71,
         'Sibiu': 151
       },
-      'Timbisoara': {
+      'Timisoara': {
         'Arad': 118,
         'Lugoj': 111
       },
       'Sibiu': {
         'Fagaras': 99,
-        'RimnicuVilcea': 80
+        'RimnicuVilcea': 80,
+        'Oradea': 151,
+        'Arad': 140
       },
       'Lugoj': {
         'Mehadia': 70,
@@ -34,9 +36,10 @@ class Mapa:
         'Mehadia': 75,
         'Craiova': 120
       },
-      'Craioba': {
+      'Craiova': {
         'RimnicuVilcea': 146,
-        'Pitesti': 138
+        'Pitesti': 138,
+        'Drobeta': 120
       },
       'RimnicuVilcea': {
         'Sibiu': 80,
@@ -85,14 +88,20 @@ class Mapa:
         'Iasi': 87
       }
     }
-    
-  def getMapa(self):
+
+  @property
+  def mapa(self):
     return self.__mapa.items()
   
-  def printMapa(self):
+  @mapa.setter
+  def mapa(self, mapa:'Mapa'):
+    self.__mapa = mapa
+  
+  def print_mapa(self):
     for x, y in self.__mapa.items():
       print('-------------------------------')
       print('Cidade: ' + x + '\nVizinhos:')
       
       for w, z in y.items():
         print('\tCidade: ' + w + '\n\tDistância: ' + str(z))
+    print('-------------------------------')
