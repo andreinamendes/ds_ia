@@ -3,4 +3,6 @@ import pprint
 
 if __name__ == '__main__':
   mapa = Mapa()
-  mapa.printMapa()
+  #mapa.printMapa()
+  solucao = mapa.busca_em_largura('Arad')
+  print(solucao)
