@@ -122,11 +122,12 @@ class Mapa:
             #return sol ([],int)
             solucao = [filho['estado']]
             pai = filho['pai']
+            
             while pai != '':
               print(pai)
               solucao.append(arvore[pai]['estado'])
               pai = arvore[pai]['pai']
-              solucao.reverse()
+            solucao.reverse()
             return (solucao, filho['custo'])
 
           borda.append(filho)
