@@ -88,6 +88,7 @@ class Mapa:
         'Iasi': 87
       }
     }
+    
   def busca_em_largura(self,origem, destino='Bucharest'):
     borda = []
     explorados = []
@@ -96,6 +97,7 @@ class Mapa:
       'pai':'',
       'custo':0
     }
+    
     borda.append(no)
     custo_total = 0
     arvore = {}
@@ -105,11 +107,9 @@ class Mapa:
       no = borda.pop(0)
       explorados.append(no['estado'])
       arvore[no['estado']]=no
-
       cidade_atual = no['estado']
       
       for vizinho, custo in self.__mapa[cidade_atual].items():
-        
         filho = {
           'estado':vizinho,
           'pai':cidade_atual,
@@ -118,8 +118,6 @@ class Mapa:
         
         if (not filho['estado'] in explorados) and (not filho['estado']  in [x['estado'] if x['estado']== filho['estado'] else '' for x in borda]):
           if filho['estado'] == destino:
-            
-            #return sol ([],int)
             solucao = [filho['estado']]
             pai = filho['pai']
             
@@ -131,11 +129,9 @@ class Mapa:
             return (solucao, filho['custo'])
 
           borda.append(filho)
-      
     else:
       return 'falha'
 
-  
   @property
   def mapa(self):
     return self.__mapa.items()
