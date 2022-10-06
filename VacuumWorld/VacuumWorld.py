@@ -24,6 +24,3 @@ if __name__ == '__main__':
     estado = 'suja' if p.getIsDirty() else 'limpa'
 
     print('Situação após a ação: Sala '+sala+' estado '+estado)
-
-
-   

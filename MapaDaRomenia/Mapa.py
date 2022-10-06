@@ -106,7 +106,7 @@ class Mapa:
     while len(borda):
       no = borda.pop(0)
       explorados.append(no['estado'])
-      arvore[no['estado']]=no
+      arvore[no['estado']] = no
       cidade_atual = no['estado']
       
       for vizinho, custo in self.__mapa[cidade_atual].items():
@@ -116,13 +116,12 @@ class Mapa:
           'custo':custo+no['custo']
         }
         
-        if (not filho['estado'] in explorados) and (not filho['estado']  in [x['estado'] if x['estado']== filho['estado'] else '' for x in borda]):
+        if (not filho['estado'] in explorados) and (not filho['estado']  in [x['estado'] if x['estado'] == filho['estado'] else '' for x in borda]):
           if filho['estado'] == destino:
             solucao = [filho['estado']]
             pai = filho['pai']
             
             while pai != '':
-              print(pai)
               solucao.append(arvore[pai]['estado'])
               pai = arvore[pai]['pai']
             solucao.reverse()
