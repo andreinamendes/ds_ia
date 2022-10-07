@@ -1,3 +1,5 @@
+import heapq as hq
+
 class Mapa:
   def __init__(self):
     self.__mapa = {
@@ -89,6 +91,23 @@ class Mapa:
       }
     }
     
+  @property
+  def mapa(self):
+    return self.__mapa.items()
+  
+  @mapa.setter
+  def mapa(self, mapa:'Mapa'):
+    self.__mapa = mapa
+  
+  def print_mapa(self):
+    for x, y in self.__mapa.items():
+      print('-------------------------------')
+      print('Cidade: ' + x + '\nVizinhos:')
+      
+      for w, z in y.items():
+        print('\tCidade: ' + w + '\n\tDistância: ' + str(z))
+    print('-------------------------------')
+    
   def busca_em_largura(self,origem, destino='Bucharest'):
     borda = []
     explorados = []
@@ -131,19 +150,36 @@ class Mapa:
     else:
       return 'falha'
 
-  @property
-  def mapa(self):
-    return self.__mapa.items()
-  
-  @mapa.setter
-  def mapa(self, mapa:'Mapa'):
-    self.__mapa = mapa
-  
-  def print_mapa(self):
-    for x, y in self.__mapa.items():
-      print('-------------------------------')
-      print('Cidade: ' + x + '\nVizinhos:')
+  def busca_custo_uniforme(mapa, origem='Arad', destino='Bucharest'):
+    borda = [mapa[origem]]
+    hq.heapify(borda)
+    explorados = []
+    no = {
+      'estado':origem,
+      'pai':'',
+      'custo':0
+    }
+    
+    while True:
+      if borda.empty():
+        return 'Falha'
       
-      for w, z in y.items():
-        print('\tCidade: ' + w + '\n\tDistância: ' + str(z))
-    print('-------------------------------')
+      no = hq.heappop(borda)
+      
+      if no['estado'] == destino:
+        pass
+      
+      explorados.append(no['estado'])
+      
+      for vizinho, custo in mapa[no['estado']]:
+        filho = {
+                  'estado':vizinho,
+                  'pai': no['estado'],
+                  'custo': custo
+                }
+        
+        if filho['estado'] not in explorados or filho['estado'] not in [i[1] for i in borda]:
+          hq.heappush(borda, (filho['custo'], filho['estado']))
+        elif(filho['estado'] in hq.nlargest(1,borda)):
+          hq.heappop(borda)
+          hq.heappush((filho['custo'], filho['estado']))
