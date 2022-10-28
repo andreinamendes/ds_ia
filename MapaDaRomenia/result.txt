@@ -1,0 +1,86 @@
+BUSCA EM LARGURA
+----------
+Neamt
+Solucao: 
+(['Neamt', 'Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 406)
+Tempo: 4.220008850097656e-05
+----------
+Eforie
+Solucao: 
+(['Eforie', 'Hirsova', 'Urziceni', 'Bucharest'], 269)
+Tempo: 1.6450881958007812e-05
+----------
+Lugoj
+Solucao: 
+(['Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti', 'Bucharest'], 504)
+Tempo: 6.246566772460938e-05
+----------
+Arad
+Solucao: 
+(['Arad', 'Sibiu', 'Fagaras', 'Bucharest'], 450)
+Tempo: 3.552436828613281e-05
+----------
+Vaslui
+Solucao: 
+(['Vaslui', 'Urziceni', 'Bucharest'], 227)
+Tempo: 1.4543533325195312e-05
+----------
+Oradea
+Solucao: 
+(['Oradea', 'Sibiu', 'Fagaras', 'Bucharest'], 461)
+Tempo: 3.075599670410156e-05
+----------
+Iasi
+Solucao: 
+(['Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 319)
+Tempo: 1.8596649169921875e-05
+----------
+Timisoara
+Solucao: 
+(['Timisoara', 'Arad', 'Sibiu', 'Fagaras', 'Bucharest'], 568)
+Tempo: 4.100799560546875e-05
+----------
+
+
+BUSCA EM PROFUNDIDADE
+----------
+Neamt
+Solucao: 
+(['Neamt', 'Iasi', 'Vaslui', 'Urziceni'], 406)
+Tempo: 5.125999450683594e-05
+----------
+Eforie
+Solucao: 
+(['Eforie', 'Hirsova', 'Urziceni'], 269)
+Tempo: 2.7179718017578125e-05
+----------
+Lugoj
+Solucao: 
+(['Lugoj', 'Timisoara', 'Arad', 'Sibiu', 'Oradea', 'RimnicuVilcea', 'Craiova', 'Drobeta', 'Pitesti'], 647)
+Tempo: 7.295608520507812e-05
+----------
+Arad
+Solucao: 
+(['Arad', 'Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti'], 733)
+Tempo: 6.628036499023438e-05
+----------
+Vaslui
+Solucao: 
+(['Vaslui', 'Iasi', 'Neamt', 'Urziceni'], 227)
+Tempo: 3.3855438232421875e-05
+----------
+Oradea
+Solucao: 
+(['Oradea', 'Sibiu', 'Arad', 'Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti'], 1024)
+Tempo: 7.319450378417969e-05
+----------
+Iasi
+Solucao: 
+(['Iasi', 'Neamt', 'Vaslui', 'Urziceni'], 319)
+Tempo: 4.6253204345703125e-05
+----------
+Timisoara
+Solucao: 
+(['Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti'], 615)
+Tempo: 5.7220458984375e-05
+----------
