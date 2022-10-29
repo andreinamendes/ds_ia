@@ -84,3 +84,48 @@ Solucao:
 (['Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti'], 615)
 Tempo: 5.7220458984375e-05
 ----------
+
+Busca de custo uniforme
+----------
+Neamt
+Solucao: 
+(['Neamt', 'Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 406)
+Tempo: 7.033348083496094e-05
+----------
+Eforie
+Solucao: 
+(['Eforie', 'Hirsova', 'Urziceni', 'Bucharest'], 269)
+Tempo: 3.4809112548828125e-05
+----------
+Lugoj
+Solucao: 
+(['Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti', 'Bucharest'], 504)
+Tempo: 0.00011491775512695312
+----------
+Arad
+Solucao: 
+(['Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'], 418)
+Tempo: 9.632110595703125e-05
+----------
+Vaslui
+Solucao: 
+(['Vaslui', 'Urziceni', 'Bucharest'], 227)
+Tempo: 2.9802322387695312e-05
+----------
+Oradea
+Solucao: 
+(['Oradea', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'], 429)
+Tempo: 7.939338684082031e-05
+----------
+Iasi
+Solucao: 
+(['Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 319)
+Tempo: 2.8371810913085938e-05
+----------
+Timisoara
+Solucao: 
+(['Timisoara', 'Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'], 536)
+Tempo: 8.702278137207031e-05
+----------
+
+

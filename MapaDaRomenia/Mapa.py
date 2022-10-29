@@ -1,3 +1,4 @@
+from curses import pair_content
 import heapq as hq
 
 class Mapa:
@@ -69,7 +70,7 @@ class Mapa:
     else:
       return 'falha'
 
-  def busca_custo_uniforme(self, origem='Arad', destino='Hirsova'):
+  def busca_custo_uniforme(self, origem, destino='Bucharest'):
     explorados = []
     no = {
       'estado':origem,
@@ -79,7 +80,7 @@ class Mapa:
     # guarda a tupla (custo, no) na fila de prioridade
     borda = [(0, no)]
     hq.heapify(borda)
-    
+    nos = []
 
     while True:
       if len(borda)==0:
@@ -87,31 +88,25 @@ class Mapa:
       
       #recupera o no
       no = hq.heappop(borda)[1]
-
+      nos.append(no)
       if no['estado'] == destino:
         #print(borda)
         #percorre os pais e soma os custos
         solucao = [no['estado']]
         pai = no['pai']
+        #solucao.append(pai)
         #procura o no na fila
         custo = no['custo']
         
-        while True:
-          if pai=='':
-            break
-          #print(no['estado'])
-          solucao.append(no['pai'])
-          #custo+=no['custo']
+        while pai!='':
+          solucao.append(pai)
           def pega_pai(a):
-            for k in borda:
-              if k[1]['estado'] == pai:
-                return k[1] #! == {estado:pipip, pai:pipipi, custo:0}
-                
-          no = pega_pai(borda)
-          try:
-            pai = no['pai']
-          except:
-            pai = ''
+            for p_aux in nos:
+              if p_aux['estado']==pai:
+                return p_aux['pai']
+          pai = pega_pai(pai)
+          
+        
         solucao.reverse()
         return (solucao, custo)
         
@@ -133,7 +128,7 @@ class Mapa:
         
         borda_aux = [i[1]['estado'] for i in borda]
         
-        if (not filho['estado'] in explorados) or (not filho['estado'] in borda_aux):
+        if (not filho['estado'] in explorados) and (not filho['estado'] in borda_aux):
           hq.heappush(borda, (filho['custo'], filho))
         
         #adiciona à fila o nome da cidade que está sendo procurada se o seu custo for maior que o custo atual
@@ -146,13 +141,25 @@ class Mapa:
               #print(borda_)
               if i[1]['estado']!=filho['estado']:
                 res.append((i[1]['custo'], i[1]))
+
             return res
 
           borda = f(borda)
           hq.heapify(borda)
           hq.heappush(borda,(filho['custo'], filho))
+          nos_aux = nos.copy()
+          # print('-'*10)
+          # print(nos)
+          for n_aux in nos_aux:
+            if n_aux['estado'] == filho['estado']:
+              nos.remove(n_aux)
+              nos.append(filho)
+              break
+          # print(nos)
+          # print('-'*10)
+              
 
-  def busca_profundidade(self, origem='Arad', destino='Bucharest'):
+  def busca_profundidade(self, origem, destino='Bucharest'):
     #pilha = ultimo que entra, primeiro que sai
     explorados = {}
     no = {
