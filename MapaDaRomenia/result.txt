@@ -42,70 +42,70 @@ Tempo: 4.100799560546875e-05
 ----------
 
 
-BUSCA EM PROFUNDIDADE
-----------
-Neamt
-Solucao: 
-(['Neamt', 'Iasi', 'Vaslui', 'Urziceni'], 406)
-Tempo: 5.125999450683594e-05
-----------
-Eforie
-Solucao: 
-(['Eforie', 'Hirsova', 'Urziceni'], 269)
-Tempo: 2.7179718017578125e-05
-----------
-Lugoj
-Solucao: 
-(['Lugoj', 'Timisoara', 'Arad', 'Sibiu', 'Oradea', 'RimnicuVilcea', 'Craiova', 'Drobeta', 'Pitesti'], 647)
-Tempo: 7.295608520507812e-05
-----------
-Arad
-Solucao: 
-(['Arad', 'Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti'], 733)
-Tempo: 6.628036499023438e-05
-----------
-Vaslui
-Solucao: 
-(['Vaslui', 'Iasi', 'Neamt', 'Urziceni'], 227)
-Tempo: 3.3855438232421875e-05
-----------
-Oradea
-Solucao: 
-(['Oradea', 'Sibiu', 'Arad', 'Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti'], 1024)
-Tempo: 7.319450378417969e-05
-----------
-Iasi
-Solucao: 
-(['Iasi', 'Neamt', 'Vaslui', 'Urziceni'], 319)
-Tempo: 4.6253204345703125e-05
-----------
-Timisoara
-Solucao: 
-(['Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti'], 615)
-Tempo: 5.7220458984375e-05
-----------
-
-Busca de custo uniforme
+Busca em profundidade
 ----------
 Neamt
 Solucao: 
 (['Neamt', 'Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 406)
-Tempo: 7.033348083496094e-05
+Tempo: 6.246566772460938e-05
 ----------
 Eforie
 Solucao: 
 (['Eforie', 'Hirsova', 'Urziceni', 'Bucharest'], 269)
-Tempo: 3.4809112548828125e-05
+Tempo: 1.71661376953125e-05
+----------
+Lugoj
+Solucao: 
+(['Lugoj', 'Timisoara', 'Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'], 647)
+Tempo: 7.987022399902344e-05
+----------
+Arad
+Solucao: 
+(['Arad', 'Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti', 'Bucharest'], 733)
+Tempo: 5.650520324707031e-05
+----------
+Vaslui
+Solucao: 
+(['Vaslui', 'Urziceni', 'Bucharest'], 227)
+Tempo: 2.2411346435546875e-05
+----------
+Oradea
+Solucao: 
+(['Oradea', 'Sibiu', 'Arad', 'Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti', 'Bucharest'], 1024)
+Tempo: 4.3392181396484375e-05
+----------
+Iasi
+Solucao: 
+(['Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 319)
+Tempo: 1.8596649169921875e-05
+----------
+Timisoara
+Solucao: 
+(['Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti', 'Bucharest'], 615)
+Tempo: 2.86102294921875e-05
+----------
+
+Busca custo uniforme
+----------
+Neamt
+Solucao: 
+(['Neamt', 'Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 406)
+Tempo: 0.000133514404296875
+----------
+Eforie
+Solucao: 
+(['Eforie', 'Hirsova', 'Urziceni', 'Bucharest'], 269)
+Tempo: 3.886222839355469e-05
 ----------
 Lugoj
 Solucao: 
 (['Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti', 'Bucharest'], 504)
-Tempo: 0.00011491775512695312
+Tempo: 0.00011801719665527344
 ----------
 Arad
 Solucao: 
 (['Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'], 418)
-Tempo: 9.632110595703125e-05
+Tempo: 0.00010967254638671875
 ----------
 Vaslui
 Solucao: 
@@ -115,17 +115,101 @@ Tempo: 2.9802322387695312e-05
 Oradea
 Solucao: 
 (['Oradea', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'], 429)
-Tempo: 7.939338684082031e-05
+Tempo: 9.489059448242188e-05
 ----------
 Iasi
 Solucao: 
 (['Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 319)
-Tempo: 2.8371810913085938e-05
+Tempo: 3.2901763916015625e-05
 ----------
 Timisoara
 Solucao: 
 (['Timisoara', 'Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'], 536)
-Tempo: 8.702278137207031e-05
+Tempo: 0.00010824203491210938
 ----------
 
+Busca gulosa melhor escolha
+----------
+Neamt
+Solucao: 
+(['Neamt', 'Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 406)
+Tempo: 0.00010752677917480469
+----------
+Eforie
+Solucao: 
+(['Eforie', 'Hirsova', 'Urziceni', 'Bucharest'], 269)
+Tempo: 2.9325485229492188e-05
+----------
+Lugoj
+Solucao: 
+(['Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti', 'Bucharest'], 504)
+Tempo: 9.632110595703125e-05
+----------
+Arad
+Solucao: 
+(['Arad', 'Sibiu', 'Fagaras', 'Bucharest'], 450)
+Tempo: 5.602836608886719e-05
+----------
+Vaslui
+Solucao: 
+(['Vaslui', 'Urziceni', 'Bucharest'], 227)
+Tempo: 2.47955322265625e-05
+----------
+Oradea
+Solucao: 
+(['Oradea', 'Sibiu', 'Fagaras', 'Bucharest'], 461)
+Tempo: 4.124641418457031e-05
+----------
+Iasi
+Solucao: 
+(['Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 319)
+Tempo: 3.647804260253906e-05
+----------
+Timisoara
+Solucao: 
+(['Timisoara', 'Arad', 'Sibiu', 'Fagaras', 'Bucharest'], 568)
+Tempo: 7.724761962890625e-05
+----------
 
+Busca A*
+----------
+Neamt
+Solucao: 
+(['Neamt', 'Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 406)
+Tempo: 0.00011968612670898438
+----------
+Eforie
+Solucao: 
+(['Eforie', 'Hirsova', 'Urziceni', 'Bucharest'], 269)
+Tempo: 8.177757263183594e-05
+----------
+Lugoj
+Solucao: 
+(['Lugoj', 'Timisoara', 'Arad', 'Sibiu', 'Fagaras', 'Bucharest'], 679)
+Tempo: 0.00010633468627929688
+----------
+Arad
+Solucao: 
+(['Arad', 'Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti', 'Bucharest'], 733)
+Tempo: 0.0001327991485595703
+----------
+Vaslui
+Solucao: 
+(['Vaslui', 'Urziceni', 'Bucharest'], 227)
+Tempo: 7.081031799316406e-05
+----------
+Oradea
+Solucao: 
+(['Oradea', 'Zerind', 'Arad', 'Timisoara', 'Lugoj', 'Mehadia', 'Drobeta', 'Craiova', 'Pitesti', 'Bucharest'], 879)
+Tempo: 0.0001621246337890625
+----------
+Iasi
+Solucao: 
+(['Iasi', 'Vaslui', 'Urziceni', 'Bucharest'], 319)
+Tempo: 9.369850158691406e-05
+----------
+Timisoara
+Solucao: 
+(['Timisoara', 'Arad', 'Sibiu', 'Fagaras', 'Bucharest'], 568)
+Tempo: 0.000102996826171875
+----------

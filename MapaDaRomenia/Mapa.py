@@ -24,6 +24,28 @@ class Mapa:
     'Iasi': {'Vaslui': 92, 'Neamt': 87},
     'Neamt': {'Iasi': 87}}
 
+  d_linha_reta = {
+    'Arad':366,
+    'Bucharest':0,
+    'Craiova':160,
+    'Drobeta':242,
+    'Eforie':161,
+    'Fagaras':176,
+    'Giurgiu':77,
+    'Hirsova':151,
+    'Iasi':226,
+    'Lugoj':244,
+    'Mehadia':241,
+    'Neamt':241,
+    'Oradea':380,
+    'Pitesti':100,
+    'RimnicuVilcea':193,
+    'Sibiu':253,
+    'Timisoara':329,
+    'Urziceni':80,
+    'Vaslui':199,
+    'Zerind':374
+  }
   def busca_em_largura(self,origem, destino='Bucharest'):
     borda = []
     explorados = []
@@ -161,7 +183,7 @@ class Mapa:
 
   def busca_profundidade(self, origem, destino='Bucharest'):
     #pilha = ultimo que entra, primeiro que sai
-    explorados = {}
+    explorados = set()
     no = {
       'estado':origem,
       'pai':'',
@@ -169,14 +191,15 @@ class Mapa:
     }
     borda = [no]
     solucao = []
-
+    nos = []
     while True:
       if len(borda)==0:
         return 'Falha'
       
       no = borda.pop()
+      nos.append(no)
       solucao.append(no['estado'])
-      explorados[no['estado']]=no
+      explorados.add(no['estado'])
       
       for vizinho, custo in self.__mapa[no['estado']].items():
         filho = {
@@ -188,9 +211,222 @@ class Mapa:
         if (not filho['estado'] in explorados) and (not filho['estado'] in [x['estado'] for x in borda]):
           
           if filho['estado']==destino:
-            return (solucao, filho['custo'])
+            # solucao.append(filho['estado'])
+            # return (solucao, filho['custo'])
+            sol = [filho['estado']]
+            pai = filho['pai']
+            #sol.append(pai)
+            #procura o no na fila
+            custo = filho['custo']
+            
+            while pai!='':
+              sol.append(pai)
+              def pega_pai(a):
+                for p_aux in nos:
+                  if p_aux['estado']==pai:
+                    return p_aux['pai']
+              pai = pega_pai(pai)
+              
+            
+            sol.reverse()
+            return (sol, custo)
           borda.append(filho)
 
+  def busca_gulosa(self, origem, destino='Bucharest'):
+    explorados = []
+    no = {
+      'estado':origem,
+      'pai':'',
+      'custo':self.d_linha_reta[origem]
+    }
+    # guarda a tupla (custo, no) na fila de prioridade
+    borda = [(no['custo'], no)]
+    hq.heapify(borda)
+    nos = []
+
+    while True:
+      if len(borda)==0:
+        return 'Falha'
+      
+      #recupera o no
+      no = hq.heappop(borda)[1]
+      nos.append(no)
+      if no['estado'] == destino:
+        #print(borda)
+        #percorre os pais e soma os custos
+        solucao = [no['estado']]
+        pai = no['pai']
+        #solucao.append(pai)
+        #procura o no na fila
+        # custo = no['custo']
+        filho = no['estado']
+        custo = 0
+        
+        while pai!='':
+          custo+=self.__mapa[pai][filho]
+          solucao.append(pai)
+          def pega_pai(a):
+            for p_aux in nos:
+              if p_aux['estado']==pai:
+                return p_aux['pai']
+          filho = pai
+          pai = pega_pai(pai)
+          
+          
+        
+        solucao.reverse()
+        return (solucao, custo)
+        
+      
+      explorados.append(no['estado'])
+      
+      for vizinho, _ in self.__mapa[no['estado']].items():
+        filho = {
+          'estado':vizinho,
+          'pai': no['estado'],
+          'custo': self.d_linha_reta[vizinho]+no['custo']
+        }
+        #print(filho)
+        def estado_com_maior_custo(fila):
+          for f in fila:
+            if f[1]['estado']==filho['estado'] and f[0]>filho['custo']:
+              return True
+          return False
+        
+        borda_aux = [i[1]['estado'] for i in borda]
+        
+        if (not filho['estado'] in explorados) and (not filho['estado'] in borda_aux):
+          hq.heappush(borda, (filho['custo'], filho))
+        
+        #adiciona à fila o nome da cidade que está sendo procurada se o seu custo for maior que o custo atual
+        #elif filho['estado'] in [i[1]['estado'] if i[1]['custo']>filho['custo'] else '' for i in borda]:
+        elif estado_com_maior_custo(borda):
+          #remove da fila a cidade igual a filho['estado']
+          def f(borda_):
+            res = []
+            for i in borda_:
+              #print(borda_)
+              if i[1]['estado']!=filho['estado']:
+                res.append((i[1]['custo'], i[1]))
+
+            return res
+
+          borda = f(borda)
+          hq.heapify(borda)
+          hq.heappush(borda,(filho['custo'], filho))
+          nos_aux = nos.copy()
+          # print('-'*10)
+          # print(nos)
+          for n_aux in nos_aux:
+            if n_aux['estado'] == filho['estado']:
+              nos.remove(n_aux)
+              nos.append(filho)
+              break
+          # print(nos)
+          # print('-'*10)
+
+  def busca_a_estrela(self, origem, destino='Bucharest'):
+    explorados = []
+    no = {
+      'estado':origem,
+      'pai':'',
+      'custo':self.d_linha_reta[origem]
+    }
+    # guarda a tupla (custo, no) na fila de prioridade
+    borda = [(self.d_linha_reta[origem], no)]
+    #hq.heapify(borda)
+    nos = []
+
+    while True:
+      if len(borda)==0:
+        return 'Falha'
+      
+      #recupera o no
+      # no = hq.heappop(borda)[1]
+      try:
+        no = borda[:1][1]
+      except:
+        no = borda.pop()[1]
+      nos.append(no)
+      if no['estado'] == destino:
+        #print(borda)
+        #percorre os pais e soma os custos
+        solucao = [no['estado']]
+        pai = no['pai']
+        #solucao.append(pai)
+        #procura o no na fila
+        # custo = no['custo']
+        filho = no['estado']
+        custo = 0
+        
+        while pai!='':
+          custo+=self.__mapa[pai][filho]
+          solucao.append(pai)
+          def pega_pai(a):
+            for p_aux in nos:
+              if p_aux['estado']==pai:
+                return p_aux['pai']
+          filho = pai
+          pai = pega_pai(pai)
+        
+        solucao.reverse()
+        return (solucao, custo)
+        
+      
+      explorados.append(no['estado'])
+      
+      for vizinho, _ in self.__mapa[no['estado']].items():
+        filho = {
+          'estado':vizinho,
+          'pai': no['estado'],
+                    #g(n)+h(n)+custo_atual 
+          'custo': self.__mapa[no['estado']][vizinho]+self.d_linha_reta[vizinho]+no['custo']
+        }
+        #print(filho)
+        def estado_com_maior_custo(fila):
+          for f in fila:
+            if f[1]['estado']==filho['estado'] and f[0]>filho['custo']:
+              return True
+          return False
+        
+        borda_aux = [i[1]['estado'] for i in borda]
+        
+        if (not filho['estado'] in explorados) and (not filho['estado'] in borda_aux):
+          borda.append((filho['custo'], filho))
+          borda.sort()
+          #hq.heappush(borda, (filho['custo'], filho))
+          
+        
+        #adiciona à fila o nome da cidade que está sendo procurada se o seu custo for maior que o custo atual
+        #elif filho['estado'] in [i[1]['estado'] if i[1]['custo']>filho['custo'] else '' for i in borda]:
+        elif estado_com_maior_custo(borda):
+          #remove da fila a cidade igual a filho['estado']
+          def f(borda_):
+            res = []
+            for i in borda_:
+              #print(borda_)
+              if i[1]['estado']!=filho['estado']:
+                res.append((i[1]['custo'], i[1]))
+
+            return res
+
+          borda = f(borda)
+          borda.sort()
+          # hq.heapify(borda)
+          
+          borda.append((filho['custo'], filho))
+          borda.sort()
+          #hq.heappush(borda,(filho['custo'], filho))
+          nos_aux = nos.copy()
+          # print('-'*10)
+          # print(nos)
+          for n_aux in nos_aux:
+            if n_aux['estado'] == filho['estado']:
+              nos.remove(n_aux)
+              nos.append(filho)
+              break
+          # print(nos)
+          # print('-'*10)
   @property
   def mapa(self):
     return self.__mapa.items()
